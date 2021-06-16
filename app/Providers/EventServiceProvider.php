@@ -6,6 +6,8 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
+use App\Events\PodcastProcessed;
+use App\Listeners\SendPodcastNotification;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -18,6 +20,9 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        PodcastProcessed::class => [
+            SendPodcastNotification::class,
+        ],
     ];
 
     /**
@@ -27,8 +32,13 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        parent::boot();
-
-        //
+        // Event::listen(
+        //     PodcastProcessed::class,
+        //     [SendPodcastNotification::class, 'handle']
+        // );
+    
+        // Event::listen(function (PodcastProcessed $event) {
+        //     dd($event);
+        // });
     }
 }

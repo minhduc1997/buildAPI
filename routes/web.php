@@ -43,3 +43,8 @@ Route::get('users', function () {
     return view('welcome');
 });
 Route::get('/', 'HomeController@index')->middleware('checkToken');
+
+//pusher real time chat
+
+Route::get('/event', 'HomeController@event');
+Route::get('/notification', 'HomeController@notification');

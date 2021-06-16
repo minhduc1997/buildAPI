@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Repositories\DataResponsitory;
 use Illuminate\Http\Response;
+use App\Events\PodcastProcessed;
+use App\Events\MessageSentEvent;
+
+// use Barryvdh\Debugbar\Facade;
 
 
 class HomeController extends Controller
@@ -14,26 +18,30 @@ class HomeController extends Controller
     //     $this->repository = $repository;
     // }
 
-    function index(Request $request){
-      
-        // $output = View::make('site.contabilidad.adeudosXML')->with(compact('xml_datos', 'total'))->render();
+    function index(Request $request)
+    {
+        $variable = 'ádasd';
+        Facade::info($variable);
+        dd(Facade);
 
-    //   dd(dirname());
+        // // $output = View::make('site.contabilidad.adeudosXML')->with(compact('xml_datos', 'total'))->render();
 
-$domtree = new \DOMDocument('1.0', 'UTF-8');
-$domtree->formatOutput = true;
-$xmlRoot = $domtree->createElement("xml");
-$xmlRoot = $domtree->appendChild($xmlRoot);
-//create and append other elements
+        // //   dd(dirname());
 
-//save it to a file using a dialog box
-$file_name = "myFile.xml";
-header('Content-Disposition: attachment;filename=' . $file_name);
-header('Content-Type: text/xml');
-ob_clean();
-flush();
-echo $domtree->saveXML();
-exit;
+        // $domtree = new \DOMDocument('1.0', 'UTF-8');
+        // $domtree->formatOutput = true;
+        // $xmlRoot = $domtree->createElement("xml");
+        // $xmlRoot = $domtree->appendChild($xmlRoot);
+        // //create and append other elements
+
+        // //save it to a file using a dialog box
+        // $file_name = "myFile.xml";
+        // header('Content-Disposition: attachment;filename=' . $file_name);
+        // header('Content-Type: text/xml');
+        // ob_clean();
+        // flush();
+        // echo $domtree->saveXML();
+        // exit;
 
 
         // $yourFileNameHere = 'amc.xml';
@@ -46,34 +54,13 @@ exit;
         // return $response;
 
     }
-    function te(){
-        $xmlstr = <<<XML
-        <?xml version='1.0' standalone='yes'?>
-        <movies>
-         <movie>
-          <title>PHP: Behind the Parser</title>
-          <characters>
-           <character>
-            <name>Ms. Coder</name>
-            <actor>Onlivia Actora</actor>
-           </character>
-           <character>
-            <name>Mr. Coder</name>
-            <actor>El Act&#211;r</actor>
-           </character>
-          </characters>
-          <plot>
-           So, this language. It's like, a programming language. Or is it a
-           scripting language? All is revealed in this thrilling horror spoof
-           of a documentary.
-          </plot>
-          <great-lines>
-           <line>PHP solves all my web problems</line>
-          </great-lines>
-          <rating type="thumbs">7</rating>
-          <rating type="stars">5</rating>
-         </movie>
-        </movies>
-        XML;
+    function event()
+    {
+        $order = 'string';
+        event(new MessageSentEvent($order));
+    }
+    function notification()
+    {
+        return view('welcome');
     }
 }
