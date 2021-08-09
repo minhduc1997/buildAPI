@@ -63,6 +63,7 @@ class HomeController extends Controller
     }
     function notification()
     {
+        echo '';
         return view('welcome');
     }
 }
