@@ -57,6 +57,7 @@ class HomeController extends Controller
     function event()
     {
         $order = 'string';
+        $hello = '';
         event(new MessageSentEvent($order));
     }
     function notification()
